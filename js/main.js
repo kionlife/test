@@ -24,7 +24,45 @@ $('.ajax').html($('.ajax input').val());
 $('.ajax').removeClass('ajax');
 }});
 }});
+
+$(".getSubs").click(function(){
+    var date = $(this).attr("data")
+    $.ajax({ type: "POST",
+url:"/actions.php?action=subscription",
+data: "date="+date,
+
+success: function(data){
+    $(".subs").html(data);
+}});
     
+});
+
+
+
+$("#search").click(function(){
+    var name = $(".search input").val();
+    $.ajax({ type: "POST",
+url:"/actions.php?action=subscribers",
+data: "name="+name,
+
+success: function(data){
+    $(".subs").html(data);
+}});
+    
+});
+
+
+$("#getReceipts").click(function(){
+    var date1 = $("#date1").val();
+    var date2 = $("#date2").val();
+    $.ajax({ type: "POST",
+        url:"/actions.php?action=report",
+        data: "date1="+date1+"&date2="+date2,
+        success: function(data){
+            $(".subs").html(data);
+        }});
+    });
+
 });
 
 
